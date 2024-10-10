@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stylepro.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Edit Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="text-center">
+                <img src="/static/images/profile.jpg" alt="Profile Picture" class="profile-img-preview" id="profilePreview">
+                <div class="mb-3">
+                    <label for="profile_picture" class="form-label">Profile Picture:</label>
+                    <input type="file" name="profile_picture" id="profile_picture" class="form-control" accept="image/*" onchange="previewImage(event)">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="full_name" class="form-label">Full Name:</label>
+                <input type="text" name="full_name" value="{{ member.full_name }}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age:</label>
+                <input type="number" name="age" value="{{ member.age }}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" name="location" value="{{ member.location }}" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+        <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('profilePreview');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</body>
+</html>

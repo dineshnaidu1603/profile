@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styledash.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header text-center">
+                <img src="/static/images/profile.jpg" alt="Profile Picture" class="profile-img">
+                <h2>Welcome, {{ user.full_name }}!</h2>
+                <ul class="d-inline-flex list-unstyled">
+                    <li class="me-3"><a href="{% url 'profile' %}" class="text-white">Edit Profile</a></li>
+                    <li><a href="/logout/" class="text-white">Logout</a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Account Type:</strong> Member</p>
+                <hr>
+                <h4>Quick Links</h4>
+                <div class="quick-links">
+                    <ul>
+                        <li><a href="{% url 'profile' %}">View Profile</a></li>
+                        <li><a href="/settings/">Account Settings</a></li>
+                        <li><a href="/logout/">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
